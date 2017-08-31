@@ -35,7 +35,16 @@ xcode-select --install
 fastlane ios test
 ```
 Runs all the tests
-
+### ios enable_push
+```
+fastlane ios enable_push
+```
+Sets the Push Entitlement
+### ios disable_push
+```
+fastlane ios disable_push
+```
+Removes the Push Entitlement
 
 ----
 

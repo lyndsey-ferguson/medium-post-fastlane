@@ -3,6 +3,8 @@ fastlane_version '2.54.4'
 
 default_platform :ios
 
+require 'plist'
+
 platform :ios do
   before_all do
   end
@@ -12,6 +14,28 @@ platform :ios do
     scan
   end
 
+  desc 'Sets the Push Entitlement'
+  lane :enable_push do
+    update_entitlements_file do |plist|
+      plist['aps-environment'] = 'development'
+    end
+  end
+
+  desc 'Removes the Push Entitlement'
+  lane :disable_push do
+    update_entitlements_file do |plist|
+      plist.delete('aps-environment')
+    end
+  end
+
   after_all do |lane|
   end
+end
+
+def update_entitlements_file
+  entitlements_filepath = File.absolute_path('../notification-examples-ios10/notif10swift/notif10swift/notif10swift.entitlements')
+
+  plist = Plist.parse_xml(entitlements_filepath)
+  yield plist
+  plist.save_plist(entitlements_filepath)
 end
