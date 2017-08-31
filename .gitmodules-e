@@ -1,0 +1,3 @@
+[submodule "notification-examples-ios10"]
+	path = notification-examples-ios10
+	url = git@github.com:CleverTap/notification-examples-ios10.git
