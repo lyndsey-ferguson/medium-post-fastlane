@@ -183,7 +183,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  cocoapods (= 1.2.0)
+  cocoapods
   fastlane
   plist
   xcodeproj
