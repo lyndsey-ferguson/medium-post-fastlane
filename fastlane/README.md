@@ -45,6 +45,11 @@ Sets the Push Entitlement
 fastlane ios disable_push
 ```
 Removes the Push Entitlement
+### ios build
+```
+fastlane ios build
+```
+Builds the application with the given options
 
 ----
 

@@ -1,6 +1,4 @@
 
-fastlane_require 'plist'
-fastlane_require 'xcodeproj'
 fastlane_version '2.54.4'
 
 default_platform :ios
@@ -8,52 +6,33 @@ default_platform :ios
 require 'plist'
 require 'xcodeproj'
 
-platform :ios do
-  before_all do
-  end
+require_relative 'pushify'
 
+platform :ios do
   desc 'Runs all the tests'
   lane :test do
     scan
   end
 
   desc 'Sets the Push Entitlement'
-  lane :enable_push do
-    update_entitlements_file do |plist|
-      plist['aps-environment'] = 'development'
-    end
-    write_push_capability(true)
+  lane :enable_push do |options|
+    Pushify.enable_push(options[:push_type])
+    UI.message('Enabled push')
   end
 
   desc 'Removes the Push Entitlement'
   lane :disable_push do
-    update_entitlements_file do |plist|
-      plist.delete('aps-environment')
+    Pushify.enable_push('none')
+    UI.message('Disabled push')
+  end
+
+  desc 'Builds the application with the given options'
+  lane :build do |options|
+    if %w[development production].include? options[:push_type]
+      enable_push options
+    else
+      disable_push
     end
-    write_push_capability(false)
-  end
-
-  after_all do |lane|
-  end
-end
-
-def update_entitlements_file
-  entitlements_filepath = File.absolute_path('../notification-examples-ios10/notif10swift/notif10swift/notif10swift.entitlements')
-  plist = Plist.parse_xml(entitlements_filepath)
-  yield plist
-  plist.save_plist(entitlements_filepath)
-end
-
-def update_app_capabilities
-  byebug
-  project = Xcodeproj::Project.open('../notification-examples-ios10/notif10swift/notif10swift.xcodeproj')
-  target = project.native_targets.find { |s| s.name == 'notif10swift' }
-  yield(project.root_object.attributes['TargetAttributes'][target.uuid]['SystemCapabilities'])
-  project.save
-end
-
-def write_push_capability(enabled)
-  update_app_capabilities do |capabilities|
-    capabilities['com.apple.Push']['enabled'] = enabled ? '1' : '0'
+    # gym(workspace: Notif10Swift.worskspace_filepath)
   end
 end
