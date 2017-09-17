@@ -43,3 +43,9 @@ We could also just call `fastlane` and tell it to use the
 `enable_push` lane directly if we only wanted the project to be set up with push enabled. This could be useful if we had a more complex lane that would set up our project in a special way.
 
 _If you have not set a provisioning profile for the notification swift project, the `fastlane` `gym` action will fail. Feel free to comment it out by prepending `#` to it: `# gym(workspace: Notif10Swift.worskspace_filepath)`_
+
+Start by reviewing the `fastlane/Fastfile` file. See how the lanes are declared. You'll see that the `pushify` Ruby file is included, and that is where the `Pushify` class comes from.
+
+In `pushify`, there are methods that demonstrate how to edit entitlements files, how to edit the Project Capabilities such as Push and iCloud, and how to edit Target dependencies and Copy Files Build Phases.
+
+`Pushify` uses convenience methods in the `notif10swift_info` file to figure out the various pre-set aspects of the `notif10swift` project.
