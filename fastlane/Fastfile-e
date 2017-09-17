@@ -29,8 +29,12 @@ platform :ios do
   desc 'Builds the application with the given options'
   lane :build do |options|
     if %w[development production].include? options[:push_type]
+      # detour to the :enable_push lane so that we can
+      #   make sure that push is enabled
       enable_push options
     else
+      # detour to the :enable_push lane so that we can
+      #   make sure that push is disabled
       disable_push
     end
     # gym(workspace: Notif10Swift.worskspace_filepath)
