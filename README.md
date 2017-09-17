@@ -42,4 +42,4 @@ In the above examples, we are telling `fastlane` to take the `build` lane so tha
 We could also just call `fastlane` and tell it to use the
 `enable_push` lane directly if we only wanted the project to be set up with push enabled. This could be useful if we had a more complex lane that would set up our project in a special way.
 
-_if you have not set a provisioning profile for the notification swift project, the `fastlane` `gym` action will fail. Feel free to comment it out by prepending `#` to it: `# gym(workspace: Notif10Swift.worskspace_filepath)`_
+_If you have not set a provisioning profile for the notification swift project, the `fastlane` `gym` action will fail. Feel free to comment it out by prepending `#` to it: `# gym(workspace: Notif10Swift.worskspace_filepath)`_
