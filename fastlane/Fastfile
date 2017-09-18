@@ -37,6 +37,6 @@ platform :ios do
       #   make sure that push is disabled
       disable_push
     end
-    # gym(workspace: Notif10Swift.worskspace_filepath)
+    gym(workspace: Notif10Swift.worskspace_filepath)
   end
 end

@@ -78,7 +78,7 @@ class Pushify
   #   the app target
   def self.embed_app_extensions_buildphase(target)
     copy_buildphases = target.build_phases.select do |phase|
-      phase.is_a?(Xcodeproj::Project::Object::PBXCopyFilesBuildPhase)
+      phase.kind_of?(Xcodeproj::Project::Object::PBXCopyFilesBuildPhase)
     end
     copy_buildphases.find { |phase| phase.name == 'Embed App Extensions' }
   end
