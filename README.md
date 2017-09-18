@@ -41,7 +41,7 @@ When you run `fastlane` from the top level directory from the command line in th
 
 There, it looks for the _lane_ you requested. Think of `fastlane` as a road that allows you to arrive at a destination.
 
-In the above examples, we are telling `fastlane` to take the `build` lane so that we get a built product quickly. However, as part of that drive, we have to take a small detour on a different lane, to enable or disable push notifications.
+In the above examples, we are telling `fastlane` to take the `build` lane so that we get a built product quickly. However, as part of that drive, we have to take a small detour on a different lane, to enable or disable push notifications. When it "returns" from those other lanes, it runs the `gym` action to build the iOS app.
 
 We could also just call `fastlane` and tell it to use the
 `enable_push` lane directly if we only wanted the project to be set up with push enabled. This could be useful if we had a more complex lane that would set up our project in a special way.
