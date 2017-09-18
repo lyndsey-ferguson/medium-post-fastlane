@@ -30,6 +30,10 @@ Run the sample code from the Terminal in this cloned repo:
   echo "remove the push notification entirely from the project"
   bundle exec fastlane build
 ```
+```
+  echo "make sure that the build system works correctly and the code is written cleanly"
+  bundle exec rake
+```
 
 ## Review
 
@@ -49,3 +53,7 @@ Start by reviewing the `fastlane/Fastfile` file. See how the lanes are declared.
 In `pushify`, there are methods that demonstrate how to edit entitlements files, how to edit the Project Capabilities such as Push and iCloud, and how to edit Target dependencies and Copy Files Build Phases.
 
 `Pushify` uses convenience methods in the `notif10swift_info` file to figure out the various pre-set aspects of the `notif10swift` project.
+
+Finally, we ensure that everything is working correctly by running `rake`. Rake is a make-like tool which uses the `Rakefile` to run both `rspec` and `rubocop`. `rspec` is a behavior driven development testing tool that helps ensure that the logic in the code works as expected. `rubocop` is a Ruby static code analyzer that ensures that the code is written cleanly.
+
+The `*_spec.rb` files in `fastlane/spec` test the two main pieces of functionality: the `Fastfile` and the `Pushify` class.
