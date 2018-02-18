@@ -1,8 +1,0 @@
-require 'rspec/core/rake_task'
-
---default-path fastlane/spec
---require spec_helper
---format RspecJunitFormatter
---out artifacts/tests/result-rake.xml
---color
---format d
